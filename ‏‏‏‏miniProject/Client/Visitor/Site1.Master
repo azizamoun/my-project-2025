@@ -1,0 +1,73 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site1.master.cs" Inherits="Visitor.Site1" %>
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head runat="server">
+    <title>Mercedes Client Portal</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        body {
+            background-color: #f4f4f4;
+            font-family: 'Segoe UI', sans-serif;
+        }
+        .navbar {
+            background-color: #000;
+        }
+        .navbar-brand {
+            color: #fff;
+            font-weight: bold;
+        }
+        .nav-link {
+            color: #ccc;
+        }
+        .nav-link:hover {
+            color: #fff;
+        }
+        footer {
+            background-color: #000;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+        }
+    </style>
+    <asp:ContentPlaceHolder id="head" runat="server" />
+</head>
+<body>
+    <form id="form1" runat="server">
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <a class="navbar-brand" href="#">Mercedes</a>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <asp:HyperLink ID="lnkHome" runat="server" NavigateUrl="~/Home.aspx" CssClass="nav-link">Home</asp:HyperLink>
+                    </li>
+                   
+                     <li class="nav-item">
+                         <asp:HyperLink ID="lnkProduct" runat="server" NavigateUrl="~/Products.aspx" CssClass="nav-link">Products</asp:HyperLink>
+                     </li>
+
+                    
+                    <li class="nav-item">
+                        <asp:HyperLink ID="lnkCart" runat="server" NavigateUrl="~/Cart.aspx" CssClass="nav-link">Cart</asp:HyperLink>
+                    </li>
+                    <li class="nav-item">
+                      <asp:HyperLink ID="lnksignin" runat="server" NavigateUrl="~/LogIn.aspx" CssClass="nav-link">Sign In </asp:HyperLink>
+                    </li>
+                    
+                </ul>
+            </div>
+        </nav>
+ 
+        <div class="container mt-4">
+            <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server" />
+        </div>
+
+        <footer>
+            &copy; 2025 Mercedes-Benz. All rights reserved.
+        </footer>
+    </form>
+</body>
+</html>

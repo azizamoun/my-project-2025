@@ -1,0 +1,527 @@
+﻿<Page x:Class="AdminDesktop.OrderByDate"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Title="Orders By Date"
+      Background="#090D12"
+      FontFamily="Segoe UI">
+
+    <Page.Resources>
+
+        <!-- MAIN BACKGROUND -->
+        <LinearGradientBrush x:Key="MainBackground"
+                             StartPoint="0,0"
+                             EndPoint="1,1">
+            <GradientStop Color="#111B25"
+                          Offset="0"/>
+            <GradientStop Color="#090D12"
+                          Offset="1"/>
+        </LinearGradientBrush>
+
+        <!-- GOLD BUTTON -->
+        <Style x:Key="GoldButton"
+               TargetType="Button">
+
+            <Setter Property="Background"
+                    Value="#C9A96F"/>
+
+            <Setter Property="Foreground"
+                    Value="#111820"/>
+
+            <Setter Property="FontWeight"
+                    Value="Bold"/>
+
+            <Setter Property="FontSize"
+                    Value="14"/>
+
+            <Setter Property="Height"
+                    Value="46"/>
+
+            <Setter Property="Padding"
+                    Value="30,0"/>
+
+            <Setter Property="Cursor"
+                    Value="Hand"/>
+
+            <Setter Property="BorderThickness"
+                    Value="0"/>
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+
+                        <Border x:Name="ButtonBorder"
+                                Background="{TemplateBinding Background}"
+                                CornerRadius="10">
+
+                            <ContentPresenter
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"/>
+
+                        </Border>
+
+                        <ControlTemplate.Triggers>
+
+                            <Trigger Property="IsMouseOver"
+                                     Value="True">
+
+                                <Setter TargetName="ButtonBorder"
+                                        Property="Background"
+                                        Value="#E8C88E"/>
+
+                            </Trigger>
+
+                            <Trigger Property="IsPressed"
+                                     Value="True">
+
+                                <Setter TargetName="ButtonBorder"
+                                        Property="Background"
+                                        Value="#AB8955"/>
+
+                            </Trigger>
+
+                        </ControlTemplate.Triggers>
+
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- DATE PICKER DESIGN -->
+        <Style TargetType="DatePicker">
+
+            <Setter Property="Background"
+                    Value="#F1F3F5"/>
+
+            <Setter Property="Foreground"
+                    Value="#101820"/>
+
+            <Setter Property="BorderBrush"
+                    Value="#C9A96F"/>
+
+            <Setter Property="BorderThickness"
+                    Value="1"/>
+
+            <Setter Property="FontSize"
+                    Value="14"/>
+
+            <Setter Property="Height"
+                    Value="42"/>
+
+        </Style>
+
+        <!-- LIST VIEW DESIGN -->
+        <Style TargetType="ListView">
+
+            <Setter Property="Background"
+                    Value="#151E29"/>
+
+            <Setter Property="Foreground"
+                    Value="White"/>
+
+            <Setter Property="BorderThickness"
+                    Value="0"/>
+
+            <Setter Property="FontSize"
+                    Value="13"/>
+
+        </Style>
+
+        <!-- TABLE HEADERS -->
+        <Style TargetType="GridViewColumnHeader">
+
+            <Setter Property="Background"
+                    Value="#263543"/>
+
+            <Setter Property="Foreground"
+                    Value="#E5C48A"/>
+
+            <Setter Property="FontWeight"
+                    Value="Bold"/>
+
+            <Setter Property="FontSize"
+                    Value="12"/>
+
+            <Setter Property="Padding"
+                    Value="14,14"/>
+
+            <Setter Property="BorderBrush"
+                    Value="#394654"/>
+
+            <Setter Property="BorderThickness"
+                    Value="0,0,1,1"/>
+
+        </Style>
+
+        <!-- TABLE ROWS -->
+        <Style TargetType="ListViewItem">
+
+            <Setter Property="Background"
+                    Value="#18222D"/>
+
+            <Setter Property="Foreground"
+                    Value="White"/>
+
+            <Setter Property="Padding"
+                    Value="10,12"/>
+
+            <Setter Property="HorizontalContentAlignment"
+                    Value="Stretch"/>
+
+            <Style.Triggers>
+
+                <Trigger Property="IsMouseOver"
+                         Value="True">
+
+                    <Setter Property="Background"
+                            Value="#344455"/>
+
+                </Trigger>
+
+                <Trigger Property="IsSelected"
+                         Value="True">
+
+                    <Setter Property="Background"
+                            Value="#45566A"/>
+
+                </Trigger>
+
+            </Style.Triggers>
+
+        </Style>
+
+    </Page.Resources>
+
+    <!-- MAIN SCROLL VIEW -->
+    <ScrollViewer
+        VerticalScrollBarVisibility="Auto"
+        HorizontalScrollBarVisibility="Auto">
+
+        <Grid Background="{StaticResource MainBackground}"
+              MinWidth="800">
+
+            <StackPanel Margin="35,30,35,45"
+                        MaxWidth="1200">
+
+                <!-- PAGE HEADER -->
+                <Grid Margin="0,0,0,28">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Grid.Column="0">
+
+                        <TextBlock
+                            Text="MERCEDES-BENZ / ORDER MANAGEMENT"
+                            Foreground="#C9A96F"
+                            FontSize="12"
+                            FontWeight="Bold"/>
+
+                        <TextBlock
+                            Text="Orders By Date"
+                            Foreground="White"
+                            FontSize="34"
+                            FontWeight="Bold"
+                            Margin="0,12,0,8"/>
+
+                        <TextBlock
+                            Text="Find and review customer orders by date."
+                            Foreground="#AAB7C5"
+                            FontSize="14"/>
+
+                    </StackPanel>
+
+                    <!-- BRAND LABEL -->
+                    <Border Grid.Column="1"
+                            Background="#19232F"
+                            CornerRadius="12"
+                            BorderBrush="#354453"
+                            BorderThickness="1"
+                            Padding="20,12"
+                            VerticalAlignment="Center">
+
+                        <StackPanel>
+
+                            <TextBlock
+                                Text="MERCEDES-BENZ"
+                                Foreground="White"
+                                FontSize="17"
+                                FontWeight="Bold"
+                                HorizontalAlignment="Center"/>
+
+                            <TextBlock
+                                Text="ORDER CONTROL CENTER"
+                                Foreground="#C9A96F"
+                                FontSize="10"
+                                Margin="0,5,0,0"
+                                HorizontalAlignment="Center"/>
+
+                        </StackPanel>
+
+                    </Border>
+
+                </Grid>
+
+                <!-- SEARCH SECTION -->
+                <Border Background="#151F2A"
+                        BorderBrush="#354453"
+                        BorderThickness="1"
+                        CornerRadius="18"
+                        Padding="28"
+                        Margin="0,0,0,24">
+
+                    <StackPanel>
+
+                        <TextBlock
+                            Text="SEARCH ORDERS"
+                            Foreground="#C9A96F"
+                            FontSize="12"
+                            FontWeight="Bold"/>
+
+                        <TextBlock
+                            Text="Find Orders By Date"
+                            Foreground="White"
+                            FontSize="23"
+                            FontWeight="SemiBold"
+                            Margin="0,10,0,8"/>
+
+                        <TextBlock
+                            Text="Choose a date to view all orders placed on that day."
+                            Foreground="#AEBBC8"
+                            FontSize="13"
+                            Margin="0,0,0,25"/>
+
+                        <Grid>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <!-- DATE INPUT -->
+                            <StackPanel Grid.Column="0">
+
+                                <TextBlock
+                                    Text="SELECT ORDER DATE"
+                                    Foreground="#CDD7E0"
+                                    FontSize="12"
+                                    FontWeight="SemiBold"
+                                    Margin="0,0,0,10"/>
+
+                                <DatePicker
+                                    x:Name="datePicker"
+                                    Width="250"
+                                    HorizontalAlignment="Left"
+                                    SelectedDateFormat="Short"/>
+
+                            </StackPanel>
+
+                            <!-- SEARCH BUTTON -->
+                            <Button
+                                x:Name="ViewOrdersButton"
+                                Grid.Column="1"
+                                Content="VIEW ORDERS"
+                                Style="{StaticResource GoldButton}"
+                                VerticalAlignment="Bottom"
+                                Margin="20,0,0,0"/>
+
+                        </Grid>
+
+                    </StackPanel>
+
+                </Border>
+
+                <!-- AVAILABLE ORDERS CARD -->
+                <Border Background="#18232F"
+                        BorderBrush="#354453"
+                        BorderThickness="1"
+                        CornerRadius="17"
+                        Padding="25"
+                        Margin="0,0,0,25">
+
+                    <Grid>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Grid.Column="0">
+
+                            <TextBlock
+                                Text="AVAILABLE ORDERS"
+                                Foreground="#AEBBC8"
+                                FontSize="12"
+                                FontWeight="SemiBold"/>
+
+                            <TextBlock x:Name="TextBlockOrdersCount"
+           Text="0"
+           Foreground="#C9A96F"
+           FontSize="38"
+           FontWeight="Bold"
+           Margin="0,8,0,0"/>
+                            
+                            <TextBlock
+                                Text="Orders found for the selected date"
+                                Foreground="#9DAAB8"
+                                FontSize="13"
+                                Margin="0,7,0,0"/>
+
+                        </StackPanel>
+
+                        <Border Grid.Column="1"
+                                Width="62"
+                                Height="62"
+                                Background="#293644"
+                                CornerRadius="14"
+                                VerticalAlignment="Center">
+
+                            <TextBlock
+                                Text="▤"
+                                Foreground="#C9A96F"
+                                FontSize="36"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"/>
+
+                        </Border>
+
+                    </Grid>
+
+                </Border>
+
+                <!-- ORDERS TABLE SECTION -->
+                <Border Background="#151F2A"
+                        BorderBrush="#354453"
+                        BorderThickness="1"
+                        CornerRadius="18"
+                        Padding="24">
+
+                    <StackPanel>
+
+                        <!-- TABLE TITLE -->
+                        <Grid Margin="0,0,0,20">
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <StackPanel Grid.Column="0">
+
+                                <TextBlock
+                                    Text="Order History"
+                                    Foreground="White"
+                                    FontSize="24"
+                                    FontWeight="Bold"/>
+
+                                <TextBlock
+                                    Text="Customer orders matching the selected date"
+                                    Foreground="#AEBBC8"
+                                    FontSize="13"
+                                    Margin="0,8,0,0"/>
+
+                            </StackPanel>
+
+                            <Border Grid.Column="1"
+                                    Background="#293644"
+                                    CornerRadius="9"
+                                    Padding="15,8"
+                                    VerticalAlignment="Center">
+
+                                <TextBlock
+                                    Text="ORDER RECORDS"
+                                    Foreground="#C9A96F"
+                                    FontSize="11"
+                                    FontWeight="Bold"/>
+
+                            </Border>
+
+                        </Grid>
+
+                        <!-- EXISTING ORDERS LIST -->
+                        <ListView
+                            x:Name="listViewOrders"
+                            Height="360"
+                            Background="#151E29"
+                            Foreground="White"
+                            BorderThickness="0"
+                            ScrollViewer.HorizontalScrollBarVisibility="Auto">
+
+                            <ListView.View>
+
+                                <GridView>
+
+                                    <!-- ORDER ID -->
+                                    <GridViewColumn
+                                        Header="ORDER ID"
+                                        Width="140"
+                                        DisplayMemberBinding="{Binding OrderID}"/>
+
+                                    <!-- USER ID -->
+                                    <GridViewColumn
+                                        Header="USER ID"
+                                        Width="140"
+                                        DisplayMemberBinding="{Binding UserID}"/>
+
+                                    <!-- STATUS -->
+                                    <GridViewColumn
+                                        Header="STATUS"
+                                        Width="170"
+                                        DisplayMemberBinding="{Binding StatusOfOrder}"/>
+
+                                    <!-- DATE -->
+                                    <GridViewColumn
+                                        Header="DATE"
+                                        Width="160"
+                                        DisplayMemberBinding="{Binding DateOfOrder}"/>
+
+                                    <!-- TOTAL PRICE -->
+                                    <GridViewColumn
+                                        Header="TOTAL PRICE"
+                                        Width="160"
+                                        DisplayMemberBinding="{Binding TotalPrice}"/>
+
+                                </GridView>
+
+                            </ListView.View>
+
+                        </ListView>
+
+                    </StackPanel>
+
+                </Border>
+
+                <!-- FOOTER -->
+                <StackPanel Margin="0,28,0,0"
+                            HorizontalAlignment="Center">
+
+                    <Rectangle
+                        Width="80"
+                        Height="2"
+                        Fill="#C9A96F"
+                        Margin="0,0,0,15"/>
+
+                    <TextBlock
+                        Text="MERCEDES-BENZ"
+                        Foreground="#C9A96F"
+                        FontSize="13"
+                        FontWeight="Bold"
+                        HorizontalAlignment="Center"/>
+
+                    <TextBlock
+                        Text="LUXURY  •  INNOVATION  •  PERFORMANCE"
+                        Foreground="#7F8C9B"
+                        FontSize="11"
+                        HorizontalAlignment="Center"
+                        Margin="0,8,0,0"/>
+
+                </StackPanel>
+
+            </StackPanel>
+
+        </Grid>
+    </ScrollViewer>
+
+</Page>
+

@@ -1,0 +1,248 @@
+﻿<Window x:Class="AdminDesktop.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:UserControls="clr-namespace:AdminDesktop.View.UserControls"
+        Title="Mercedes-Benz"
+        Height="650"
+        Width="1100"
+        MinWidth="750"
+        WindowStartupLocation="CenterScreen"
+        Background="#090D12">
+
+    <Window.Resources>
+
+        <!-- Navigation Buttons -->
+        <Style x:Key="NavButton"
+               TargetType="Button">
+
+            <Setter Property="Background"
+                    Value="#1C2632"/>
+            <Setter Property="Foreground"
+                    Value="#E6EDF5"/>
+            <Setter Property="BorderThickness"
+                    Value="0"/>
+            <Setter Property="FontSize"
+                    Value="13"/>
+            <Setter Property="FontWeight"
+                    Value="SemiBold"/>
+            <Setter Property="Padding"
+                    Value="17,11"/>
+            <Setter Property="Margin"
+                    Value="4,0"/>
+            <Setter Property="Cursor"
+                    Value="Hand"/>
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="ButtonBorder"
+                                Background="{TemplateBinding Background}"
+                                CornerRadius="9"
+                                Padding="{TemplateBinding Padding}">
+
+                            <ContentPresenter
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"/>
+
+                        </Border>
+
+                        <ControlTemplate.Triggers>
+
+                            <Trigger Property="IsMouseOver"
+                                     Value="True">
+                                <Setter TargetName="ButtonBorder"
+                                        Property="Background"
+                                        Value="#C9A96F"/>
+                                <Setter Property="Foreground"
+                                        Value="#10151A"/>
+                            </Trigger>
+
+                            <Trigger Property="IsPressed"
+                                     Value="True">
+                                <Setter TargetName="ButtonBorder"
+                                        Property="Background"
+                                        Value="#A98954"/>
+                            </Trigger>
+
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </Window.Resources>
+
+
+    <Grid x:Name="MainGrid">
+
+        <!-- BUTTON DESIGN -->
+        <Grid.Resources>
+            <Style x:Key="NavButton"
+               TargetType="Button">
+                <Setter Property="Background"
+                    Value="#1C2632"/>
+                <Setter Property="Foreground"
+                    Value="White"/>
+                <Setter Property="FontSize"
+                    Value="13"/>
+                <Setter Property="FontWeight"
+                    Value="SemiBold"/>
+                <Setter Property="BorderThickness"
+                    Value="0"/>
+                <Setter Property="Padding"
+                    Value="15,10"/>
+                <Setter Property="Margin"
+                    Value="4,0"/>
+                <Setter Property="Cursor"
+                    Value="Hand"/>
+
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver"
+                         Value="True">
+                        <Setter Property="Background"
+                            Value="#C9A96F"/>
+                        <Setter Property="Foreground"
+                            Value="Black"/>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+        </Grid.Resources>
+
+        <!-- THREE ROWS -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="64"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- ROW 0: EXISTING MENUBAR -->
+        <UserControls:MenuBar
+        x:Name="myMenuBar"
+        Grid.Row="0" Loaded="myMenuBar_Loaded"/>
+
+        <!-- ROW 1: NEW NAVIGATION BAR -->
+        <Border Grid.Row="1"
+            Background="#101820"
+            BorderBrush="#33404B"
+            BorderThickness="0,0,0,1">
+
+            <ScrollViewer
+            HorizontalScrollBarVisibility="Auto"
+            VerticalScrollBarVisibility="Disabled">
+
+                <StackPanel
+                Orientation="Horizontal"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center"
+                Margin="12,0">
+
+                    <!-- HOME -->
+                    <Button x:Name="HomeButton"
+        Content="HOME"
+        Style="{StaticResource NavButton}"
+        Click="Home_Click"/>
+
+                    <!-- ABOUT -->
+                    <Button x:Name="AboutButton"
+        Content="ABOUT"
+        Style="{StaticResource NavButton}"
+        Click="About_Click"/>
+
+                    <!-- PRODUCT PAGE -->
+                    <Button x:Name="ProductButton"
+        Style="{StaticResource NavButton}"
+        Click="Product_Click">
+
+                        <StackPanel Orientation="Horizontal">
+
+                            <TextBlock x:Name="ProductLockIcon"
+                   Text="🔒"
+                   FontFamily="Segoe UI Emoji"
+                   Margin="0,0,7,0"/>
+
+                            <TextBlock Text="PRODUCTS"/>
+
+                        </StackPanel>
+                    </Button>
+
+
+                    <!-- USERS PAGE -->
+                    <Button x:Name="UsersButton"
+        Style="{StaticResource NavButton}"
+        Click="Users_Click">
+
+                        <StackPanel Orientation="Horizontal">
+
+                            <TextBlock x:Name="UsersLockIcon"
+                   Text="🔒"
+                   FontFamily="Segoe UI Emoji"
+                   Margin="0,0,7,0"/>
+
+                            <TextBlock Text="USERS"/>
+
+                        </StackPanel>
+                    </Button>
+
+
+                    <!-- ORDER BY DATE -->
+                    <Button x:Name="OrderByDateButton"
+        Style="{StaticResource NavButton}"
+        Click="OrderByDate_Click">
+
+                        <StackPanel Orientation="Horizontal">
+
+                            <TextBlock x:Name="OrderByDateLockIcon"
+                   Text="🔒"
+                   FontFamily="Segoe UI Emoji"
+                   Margin="0,0,7,0"/>
+
+                            <TextBlock Text="ORDER BY DATE"/>
+
+                        </StackPanel>
+                    </Button>
+
+
+                    <!-- ALL ORDERS -->
+                    <Button x:Name="AllOrdersButton"
+        Style="{StaticResource NavButton}"
+        Click="AllOrders_Click">
+
+                        <StackPanel Orientation="Horizontal">
+
+                            <TextBlock x:Name="AllOrdersLockIcon"
+                   Text="🔒"
+                   FontFamily="Segoe UI Emoji"
+                   Margin="0,0,7,0"/>
+
+                            <TextBlock Text="ALL ORDERS"/>
+
+                        </StackPanel>
+                    </Button>
+
+
+                    <!-- LOGIN / LOGOUT -->
+                    <Button x:Name="LoginButton"
+        Content="LOGIN"
+        Style="{StaticResource NavButton}"
+        Click="Login_Click"/>
+
+                </StackPanel>
+            </ScrollViewer>
+        </Border>
+
+        <!-- ROW 2: PAGE CONTENT -->
+        <Frame x:Name="myFrame"
+           Grid.Row="2"
+           NavigationUIVisibility="Hidden">
+
+            <Frame.Background>
+                <ImageBrush
+                ImageSource="/Images/מרצדס־בנץ בשעת שקיעה драмטית.png"
+                Stretch="UniformToFill"/>
+            </Frame.Background>
+
+        </Frame>
+
+    </Grid>
+
+</Window>

@@ -1,0 +1,200 @@
+﻿<Window
+        xmlns:converters="clr-namespace:AdminDesktop.App_Code.Converters"
+        xmlns:validationRules="clr-namespace:AdminDesktop.App_Code"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AdminDesktop"
+        xmlns:UserControls="clr-namespace:AdminDesktop.View.UserControls" x:Class="AdminDesktop.EditProduct"
+        mc:Ignorable="d"
+        Title="Edit Product" Height="500" Width="420">
+    <Window.Resources>
+        <converters:Base64ImageConverter x:Key="Base64ImageConverter"/>
+        <ControlTemplate x:Key="ValidationTemplate">
+            <DockPanel>
+                <TextBlock Margin="10,0,0,0" Text="{Binding [0].ErrorContent}" Foreground="Red" DockPanel.Dock="Bottom"/>
+                <AdornedElementPlaceholder/>
+            </DockPanel>
+        </ControlTemplate>
+
+    </Window.Resources>
+
+    <StackPanel HorizontalAlignment="Left" Width="420">
+        <StackPanel.Background>
+            <ImageBrush ImageSource="/Images/רקע יוקרתי_ סיבי פחמן ומתכת מוברשת.png"/>
+        </StackPanel.Background>
+        <StackPanel Orientation="Horizontal"
+                    HorizontalAlignment="Center">
+            <TextBlock Margin="10" HorizontalAlignment="Center" 
+                       Text="Product Editor" FontSize="20" 
+                       FontWeight="Bold" Foreground="White" FontFamily="Andalus" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Margin="10" HorizontalAlignment="Left" 
+                       Text="Name: " FontSize="20" Width="100" Foreground="White"/>
+            <TextBox x:Name="TextBoxName" Margin="10" HorizontalAlignment="Left" FontSize="20" Width="270"
+                     Validation.ErrorTemplate="{StaticResource ValidationTemplate}" Foreground="White" Background="{x:Null}" BorderBrush="White" SelectionBrush="White">
+                <Binding Path="Name" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <validationRules:RequiredFiledValidationRule 
+                                x:Name="NameValidation" 
+                                ValidatesOnTargetUpdated="True" 
+                                Message="*"/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox>
+
+
+
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Margin="10" HorizontalAlignment="Left" 
+                       FontSize="20" Text="Description: " Width="100" Foreground="White"/>
+            <TextBox Margin="10"  x:Name="TextBoxDescription" Grid.Row="0" 
+                     Grid.Column="4" HorizontalAlignment="Left" 
+                     FontSize="20" Width="270" 
+                     Validation.ErrorTemplate="{StaticResource ValidationTemplate}" SelectionBrush="White" Foreground="White" BorderBrush="White" Background="{x:Null}">
+                <Binding Path="Description" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <validationRules:RequiredFiledValidationRule
+                                x:Name="DescriptionValidation" 
+                                ValidatesOnTargetUpdated="True"
+                                Message="*"/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox>
+
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Margin="10" HorizontalAlignment="Left" 
+                FontSize="20" Text="Hand: " Width="100" Foreground="White"/>
+            <TextBox Margin="10"  x:Name="TextBoxHand" Grid.Row="0" 
+              Grid.Column="4" HorizontalAlignment="Left" 
+              FontSize="20" Width="270" 
+              Validation.ErrorTemplate="{StaticResource ValidationTemplate}" Background="{x:Null}" BorderBrush="White" Foreground="White" SelectionBrush="White">
+                <Binding Path="Hand" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <validationRules:RequiredFiledValidationRule
+                         x:Name="HandValidation" 
+                         ValidatesOnTargetUpdated="True"
+                         Message="*"/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox>
+
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Margin="10" HorizontalAlignment="Left" 
+                FontSize="20" Text="Color: " Width="100" Foreground="White"/>
+            <TextBox Margin="10"  x:Name="TextBoxColor" Grid.Row="0" 
+              Grid.Column="4" HorizontalAlignment="Left" 
+              FontSize="20" Width="270" 
+              Validation.ErrorTemplate="{StaticResource ValidationTemplate}" Background="{x:Null}" BorderBrush="White" Foreground="White" SelectionBrush="White">
+                <Binding Path="Color" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <validationRules:RequiredFiledValidationRule
+                         x:Name="ColorValidation" 
+                         ValidatesOnTargetUpdated="True"
+                         Message="*"/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox>
+
+        </StackPanel>
+
+
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Margin="10" HorizontalAlignment="Left" 
+                       Text="Price: " FontSize="20" Width="100" Foreground="White"/>
+            <TextBox x:Name="TextBoxPrice" Margin="10" HorizontalAlignment="Left" FontSize="20" Width="270"
+                     Validation.ErrorTemplate="{StaticResource ValidationTemplate}" SelectionBrush="White" Foreground="White" BorderBrush="White" Background="{x:Null}">
+                <Binding Path="Price" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <validationRules:IntValidationRule 
+                                x:Name="PriceValidation" 
+                                ValidatesOnTargetUpdated="True" 
+                                Min="0"
+                                Max="1000000"
+                                Message="Price should be from range [0, 1000000].                                                                 "/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox>
+
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" RenderTransformOrigin="0.504,0.676" Height="47">
+            <TextBlock Margin="10" HorizontalAlignment="Left" 
+                       Text="Quantity: " FontSize="20" Width="100" Foreground="White"/>
+            <TextBox x:Name="TextBoxQuantity" Margin="10" HorizontalAlignment="Left" FontSize="20" Width="270"
+                     Validation.ErrorTemplate="{StaticResource ValidationTemplate}" Background="{x:Null}" BorderBrush="White" Foreground="White" SelectionBrush="White">
+                <Binding Path="Quantity" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <validationRules:IntValidationRule 
+                                x:Name="QuantityValidation" 
+                                ValidatesOnTargetUpdated="True" 
+                                Min="1"
+                                Max="1000"
+                                Message="Quantity should be from range [0, 1000].                                 "/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox>
+
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Margin="10" HorizontalAlignment="Left" 
+                       FontSize="20" Text="Image: " Foreground="White"/>
+            <Button x:Name="ButtonBrowse" Margin="10" 
+                    HorizontalAlignment="Left" FontSize="20" Width="100" 
+                    Content="Browse..." Click="ButtonBrowse_Click" Background="Black" BorderBrush="White" Foreground="White"/>
+            <TextBox Margin="10" x:Name="TextBoxPath" 
+                     HorizontalAlignment="Left" FontSize="20" Width="180" 
+                     IsReadOnly="True" Text="{Binding ImageName}" SelectionBrush="White" Foreground="White" BorderBrush="White" Background="{x:Null}" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Height="1" RenderTransformOrigin="0.5,0.5">
+            <StackPanel.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleY="-1"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </StackPanel.RenderTransform>
+            <Image Width="100" Height="100"
+                   Source="{Binding ImageStr, Converter={StaticResource Base64ImageConverter}, UpdateSourceTrigger=PropertyChanged}"/>
+        </StackPanel>
+
+        <WrapPanel Margin="10"   HorizontalAlignment="Center">
+            <Button Width="80" Margin="5" FontSize="20" x:Name="ButtonSave"
+                    Content="Save" Click="ButtonSave_Click" Background="{x:Null}" BorderBrush="White" >
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="IsEnabled" Value="False"/>
+                        <Style.Triggers>
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition Binding="{Binding (Validation.HasError), ElementName=TextBoxName}" Value="False"/>
+                                    <Condition Binding="{Binding (Validation.HasError), ElementName=TextBoxDescription}" Value="False"/>
+                                    <Condition Binding="{Binding (Validation.HasError), ElementName=TextBoxPrice}" Value="False"/>
+                                    <Condition Binding="{Binding (Validation.HasError), ElementName=TextBoxQuantity}" Value="False"/>
+                                    <Condition Binding="{Binding (Validation.HasError), ElementName=TextBoxPath}" Value="False"/>
+                                </MultiDataTrigger.Conditions>
+                                <Setter Property="IsEnabled" Value="True"/>
+                            </MultiDataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+
+
+            </Button>
+            <Button Width="80" FontSize="20" 
+                    x:Name="ButtonCancel" Content="Cancel" 
+                    Click="ButtonCancel_Click" Background="White" />
+        </WrapPanel>
+        <UserControls:MenuBar/>
+        <UserControls:MenuBar/>
+    </StackPanel>
+
+</Window>
